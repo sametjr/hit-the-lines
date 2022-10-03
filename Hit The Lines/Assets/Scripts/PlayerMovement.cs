@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyForceToPlayer()
     {
-        playerRigidbody.AddForce(forceVector * forcePower); // Apply the force to the Rigidbody.
+        if(!GameManager.Instance.isGamePaused)
+            playerRigidbody.AddForce(forceVector * forcePower); // Apply the force to the Rigidbody.
     }
 
     

@@ -46,11 +46,24 @@ public class StarSpawner : MonoBehaviour
 
     private void HandleLineRenderer(GameObject _createdStar, Vector3 _closestStarPos)
     {
+        LineRenderer lr = _createdStar.GetComponent<LineRenderer>();
         List<Vector3> positions = new List<Vector3>();
         positions.Add(_createdStar.transform.position);
         positions.Add(_closestStarPos);
 
-        _createdStar.GetComponent<LineRenderer>().SetPositions(positions.ToArray());
+        lr.SetPositions(positions.ToArray());
+        lr.startColor = GetRandomColor();
+        lr.endColor = GetRandomColor();
+    }
+
+    private Color GetRandomColor()
+    {
+        float randomRedValue = Random.Range(0f, 1f);
+        float randomGeenValue = Random.Range(0f, 1f);
+        float randomBlueValue = Random.Range(0f, 1f);
+
+        Color color = new Color(randomRedValue, randomGeenValue, randomBlueValue, 1);
+        return color;
     }
 
 

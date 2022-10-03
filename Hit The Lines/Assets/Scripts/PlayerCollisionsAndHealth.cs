@@ -7,16 +7,17 @@ public class PlayerCollisionsAndHealth : MonoBehaviour
     [SerializeField] private Color[] colors;
     [SerializeField] private float lerpValue;
     private int _colorIndex = 0;
-    private Color _playerGfxColor;
+    private SpriteRenderer _playerGfxSpriteRenderer;
 
     private void Start() {
 
-        _playerGfxColor = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+        _playerGfxSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     private void OnTriggerEnter2D(Collider2D other) {
         // ObjectPool.DisableStarAndAddToQueue(other.gameObject);
         other.gameObject.GetComponent<LineRenderer>().enabled = false;
         other.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        
         Vector2 firstPos = other.gameObject.GetComponent<LineRenderer>().GetPosition(0);
         Vector2 secondPos = other.gameObject.GetComponent<LineRenderer>().GetPosition(1);
         
@@ -32,7 +33,7 @@ public class PlayerCollisionsAndHealth : MonoBehaviour
         {
             GameManager.Instance.PlayerHitObstacle();
             _colorIndex++;
-            transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[_colorIndex];
+            _playerGfxSpriteRenderer.color = colors[_colorIndex];
         }
     }
 

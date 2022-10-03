@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,12 +30,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera _cam;
     [SerializeField] private GameObject _player;
     [SerializeField] private Transform _groundTransform;
+    [SerializeField] private UIControl uIControl;
     [SerializeField, Range(0,20)] private float gameSpeed;
-    [SerializeField, Range(0, .01f)] float gameSpeedMultiplier = .0001f;
+    [SerializeField, Range(0, .01f)] private float gameSpeedMultiplier = .0001f;
 
     private float secondsToSpawn = 1;
     private int playerHealth = 3;
     private int _score = 0;
+    private bool _isGamePaused = false, _isGameOver = false;
 
     public SpriteRenderer leftWallRenderer => this.leftWall.GetComponent<SpriteRenderer>();
     public SpriteRenderer rightWallRenderer => this.rightWall.GetComponent<SpriteRenderer>();
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     public Vector3 groundPosition => this._groundTransform.position;
     public float SecondsToSpawn => this.secondsToSpawn;
     public int PlayerHealth => this.playerHealth;
+    public bool isGamePaused => this._isGamePaused;
 
     public int Score
     {
@@ -59,19 +63,50 @@ public class GameManager : MonoBehaviour
 
 
     private void FixedUpdate() {
-        this.gameSpeed += gameSpeedMultiplier;
-        this.secondsToSpawn -= gameSpeedMultiplier / 4;
+        this.gameSpeed += gameSpeedMultiplier; //Game speed increases over time
+        this.secondsToSpawn -= gameSpeedMultiplier / 4; // Obstacle spawn rate increases over time.
     }
 
     public void PlayerHitObstacle()
     {
         this.playerHealth--;
-        GameOver();
+        if(this.playerHealth <= 0) GameOver();
     }
 
     private void GameOver()
     {
         //TODO 
-        Debug.Log("Game Over !");
+        _isGameOver = true;
+        uIControl.ShowGameOverScreen();
+        Time.timeScale = 0;
+    }
+
+    public void PauseGame()
+    {
+        if(!_isGamePaused && !_isGameOver)
+        {
+            _isGamePaused = true;
+            uIControl.ShowGamePausedMenu();
+            Time.timeScale = 0;
+        }
+    }
+
+    public void ContinueGame()
+    {
+        if(_isGamePaused && !_isGameOver)
+        {
+            _isGamePaused = false;
+            Time.timeScale = 1;
+            uIControl.HideGamePausedScreen();
+        }
+    }
+
+    public void RestartGame()
+    {
+        if(_isGameOver && !_isGamePaused)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
