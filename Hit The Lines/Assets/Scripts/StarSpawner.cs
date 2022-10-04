@@ -33,6 +33,8 @@ public class StarSpawner : MonoBehaviour
         float randomX = Random.Range(GameManager.Instance.leftWallRenderer.bounds.max.x, GameManager.Instance.rightWallRenderer.bounds.min.x);
         float randomY = Random.Range(_distanceFromPlayer + thresholdValue, _distanceFromPlayer - thresholdValue) + GameManager.Instance.playerTransform.position.y;
 
+        
+
         return ObjectPool.GetStarFromPool(new Vector2(randomX, randomY)); // Spawn star every x second at a random point between the walls and a random heigh.
     }
 
@@ -41,10 +43,9 @@ public class StarSpawner : MonoBehaviour
         List<Vector2> positions = new List<Vector2>();
         positions.Add(_createdStar.transform.InverseTransformPoint(_createdStar.transform.position));
         positions.Add(_createdStar.transform.InverseTransformPoint(_closestStarPos));
-
+        
         EdgeCollider2D ec = _createdStar.GetComponent<EdgeCollider2D>();
         ec.SetPoints(positions);
-        ec.points = positions.ToArray();
     }
 
     private void HandleLineRenderer(GameObject _createdStar, Vector3 _closestStarPos)

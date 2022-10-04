@@ -15,6 +15,13 @@ public class PlayerCollisionsAndHealth : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         // ObjectPool.DisableStarAndAddToQueue(other.gameObject);
+
+
+        // TODO --> LINE BREAK
+        // LineBreaker.SeperateLineIntoPieces(other.gameObject);
+
+
+        
         other.gameObject.GetComponent<LineRenderer>().enabled = false;
         other.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
         
