@@ -16,11 +16,14 @@ public class StarSpawner : MonoBehaviour
     {
         while (true)
         {
-            ObjectPool.DisableStarsUnderGround();
-            GameObject createdStar = SpawnStarFromPool();
-            Vector3 closestStarPos = ObjectPool.ClosestStarPosition(_star: createdStar);
-            HandleLineRenderer(createdStar, closestStarPos);
-            HandleEdgeCollider(createdStar, closestStarPos);
+            if (!GameManager.Instance.isGamePaused && !GameManager.Instance.isGameOver)
+            {
+                ObjectPool.DisableStarsUnderGround();
+                GameObject createdStar = SpawnStarFromPool();
+                Vector3 closestStarPos = ObjectPool.ClosestStarPosition(_star: createdStar);
+                HandleLineRenderer(createdStar, closestStarPos);
+                HandleEdgeCollider(createdStar, closestStarPos);
+            }
             yield return new WaitForSecondsRealtime(GameManager.Instance.SecondsToSpawn);
         }
     }

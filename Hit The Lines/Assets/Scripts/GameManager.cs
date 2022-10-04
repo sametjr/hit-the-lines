@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public float SecondsToSpawn => this.secondsToSpawn;
     public int PlayerHealth => this.playerHealth;
     public bool isGamePaused => this._isGamePaused;
+    public bool isGameOver => this._isGameOver;
 
     public int Score
     {
