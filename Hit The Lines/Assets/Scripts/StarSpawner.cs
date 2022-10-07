@@ -56,19 +56,11 @@ public class StarSpawner : MonoBehaviour
         positions.Add(_closestStarPos);
 
         lr.SetPositions(positions.ToArray());
-        lr.startColor = GetRandomColor();
-        lr.endColor = GetRandomColor();
+        lr.startColor = GameManager.Instance.GetRandomColor();
+        lr.endColor = GameManager.Instance.GetRandomColor();
     }
 
-    private Color GetRandomColor()
-    {
-        float randomRedValue = Random.Range(0f, 1f);
-        float randomGeenValue = Random.Range(0f, 1f);
-        float randomBlueValue = Random.Range(0f, 1f);
-
-        Color color = new Color(randomRedValue, randomGeenValue, randomBlueValue, 1);
-        return color;
-    }
+    
 
 
 }

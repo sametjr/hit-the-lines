@@ -30,20 +30,22 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static GameObject GetStarFromPool(bool getActive = true) // Get the object without setting a certain position
-    {
-        GameObject head = starPool.Dequeue();
-        if(head.GetComponent<LineRenderer>().enabled == false) head.GetComponent<LineRenderer>().enabled = true;
-        if(head.GetComponent<EdgeCollider2D>().enabled == false) head.GetComponent<EdgeCollider2D>().enabled = true;
-        if (getActive) head.SetActive(true);
-        activeStarsList.Add(head);
-        return head;
-    }
+    // public static GameObject GetStarFromPool(bool getActive = true) // Get the object without setting a certain position
+    // {
+    //     GameObject head = starPool.Dequeue();
+    //     if(head.GetComponent<LineRenderer>().enabled == false) head.GetComponent<LineRenderer>().enabled = true;
+    //     if(head.transform.GetChild(0).GetComponent<LineRenderer>().enabled == false) head.transform.GetChild(0).GetComponent<LineRenderer>().enabled = true;
+    //     if(head.GetComponent<EdgeCollider2D>().enabled == false) head.GetComponent<EdgeCollider2D>().enabled = true;
+    //     if (getActive) head.SetActive(true);
+    //     activeStarsList.Add(head);
+    //     return head;
+    // }
 
     public static GameObject GetStarFromPool(Vector2 _pos, bool getActive = true) // Get the head object by setting its position
     {
         GameObject head = starPool.Dequeue();
         if(head.GetComponent<LineRenderer>().enabled == false) head.GetComponent<LineRenderer>().enabled = true;
+        if(head.transform.GetChild(0).GetComponent<LineRenderer>().enabled == false) head.transform.GetChild(0).GetComponent<LineRenderer>().enabled = true;
         if(head.GetComponent<EdgeCollider2D>().enabled == false) head.GetComponent<EdgeCollider2D>().enabled = true;
         if (getActive) head.SetActive(true);
         head.transform.position = _pos;

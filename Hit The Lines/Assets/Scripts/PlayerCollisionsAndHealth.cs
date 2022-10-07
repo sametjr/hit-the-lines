@@ -18,11 +18,13 @@ public class PlayerCollisionsAndHealth : MonoBehaviour
 
 
         // TODO --> LINE BREAK
-        // LineBreaker.SeperateLineIntoPieces(other.gameObject);
+        LineBreaker.SeperateLineIntoPieces(other.gameObject, other.ClosestPoint(transform.position));
+        // other.gameObject.AddComponent<LineBreaker>();
+
 
 
         
-        other.gameObject.GetComponent<LineRenderer>().enabled = false;
+        // other.gameObject.GetComponent<LineRenderer>().enabled = false;
         other.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
         
         Vector2 firstPos = other.gameObject.GetComponent<LineRenderer>().GetPosition(0);

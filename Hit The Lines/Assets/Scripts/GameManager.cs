@@ -110,4 +110,14 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    public Color GetRandomColor()
+    {
+        float randomRedValue = Random.Range(0f, 1f);
+        float randomGeenValue = Random.Range(0f, 1f);
+        float randomBlueValue = Random.Range(0f, 1f);
+
+        Color color = new Color(randomRedValue, randomGeenValue, randomBlueValue, 1);
+        return color;
+    }
 }
