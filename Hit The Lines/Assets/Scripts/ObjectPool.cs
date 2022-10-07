@@ -66,6 +66,7 @@ public class ObjectPool : MonoBehaviour
                 closestStarPosition = _other.transform.position;
             }
         }
+        if(closestStarPosition == Vector3.zero) closestStarPosition = _star.transform.position;
         return closestStarPosition;
 
     }
