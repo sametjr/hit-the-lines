@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIControl : MonoBehaviour
 {
-    [SerializeField] private Text scoreText, gameOverScoreText;
+    [SerializeField] private Text scoreText, gameOverScoreText, highestScoreText;
     [SerializeField] private GameObject gamePausedMenu, gameOverMenu;
 
     public void UpdateScore(int _value)
@@ -22,6 +22,8 @@ public class UIControl : MonoBehaviour
     {
         gameOverMenu.SetActive(true);
         gameOverScoreText.text = "Your score is : " + GameManager.Instance.Score.ToString();
+
+        highestScoreText.text = "Highest Score : " + PlayerPrefs.GetInt("highScore");
     }
 
 

@@ -77,9 +77,21 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         //TODO 
+        HandleHighScore();
         _isGameOver = true;
         uIControl.ShowGameOverScreen();
         Time.timeScale = 0;
+    }
+
+    private void HandleHighScore()
+    {
+        if(PlayerPrefs.GetInt("highScore") == 0) PlayerPrefs.SetInt("highScore", this._score);
+
+
+        else if(this._score > PlayerPrefs.GetInt("highScore"))
+        {
+            PlayerPrefs.SetInt("highScore", this._score);
+        }
     }
 
     public void PauseGame()

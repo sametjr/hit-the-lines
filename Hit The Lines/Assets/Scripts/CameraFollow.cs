@@ -30,6 +30,6 @@ public class CameraFollow : MonoBehaviour
             lerpValue * Time.deltaTime
         ); // Control the camera to not to show the outside of the map.
 
-
+        
     }
 }
