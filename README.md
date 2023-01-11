@@ -1,6 +1,6 @@
 # Hit The Lines
 # An android game made with unity.
-Avoid random-spawned stars, break the lines, earn points. Will be on Google Play Store soon.
+Avoid random-spawned stars, break the lines, earn points. It is on Google Play Store! -> https://play.google.com/store/apps/details?id=com.Puding.HitTheLines.
 
  
 ![image_001_0062](https://user-images.githubusercontent.com/104216332/195405582-228d9686-16f0-447f-aceb-dad6ff5c25eb.jpg)
